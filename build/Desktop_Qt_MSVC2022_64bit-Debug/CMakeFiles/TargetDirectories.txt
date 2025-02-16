@@ -1,0 +1,8 @@
+D:/Cpp/My projects/Qt/PasswordManager/PasswordManager_v0.03(remake)/build/Desktop_Qt_MSVC2022_64bit-Debug/CMakeFiles/PasswordManager.dir
+D:/Cpp/My projects/Qt/PasswordManager/PasswordManager_v0.03(remake)/build/Desktop_Qt_MSVC2022_64bit-Debug/CMakeFiles/edit_cache.dir
+D:/Cpp/My projects/Qt/PasswordManager/PasswordManager_v0.03(remake)/build/Desktop_Qt_MSVC2022_64bit-Debug/CMakeFiles/rebuild_cache.dir
+D:/Cpp/My projects/Qt/PasswordManager/PasswordManager_v0.03(remake)/build/Desktop_Qt_MSVC2022_64bit-Debug/CMakeFiles/list_install_components.dir
+D:/Cpp/My projects/Qt/PasswordManager/PasswordManager_v0.03(remake)/build/Desktop_Qt_MSVC2022_64bit-Debug/CMakeFiles/install.dir
+D:/Cpp/My projects/Qt/PasswordManager/PasswordManager_v0.03(remake)/build/Desktop_Qt_MSVC2022_64bit-Debug/CMakeFiles/install/local.dir
+D:/Cpp/My projects/Qt/PasswordManager/PasswordManager_v0.03(remake)/build/Desktop_Qt_MSVC2022_64bit-Debug/CMakeFiles/PasswordManager_autogen_timestamp_deps.dir
+D:/Cpp/My projects/Qt/PasswordManager/PasswordManager_v0.03(remake)/build/Desktop_Qt_MSVC2022_64bit-Debug/CMakeFiles/PasswordManager_autogen.dir
