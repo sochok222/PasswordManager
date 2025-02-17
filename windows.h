@@ -37,7 +37,7 @@ public:
     }
     QByteArray encryptDatabase(const QString &filePath, const QByteArray &data, const QString &key);
     bool createEncryptedDatabase(const QString &dbPath, const QString &key);
-    bool decryptDatabase(const QString &filePath, const QString &key, QSqlDatabase &db);
+    bool decryptDatabase(const QString &key, QSqlDatabase &db);
 };
 
 #endif // WINDOWS_H

@@ -82,9 +82,10 @@ bool Windows::createEncryptedDatabase(const QString &dbPath, const QString &key)
 QByteArray Windows::encryptDatabase(const QString &filePath, const QByteArray &data, const QString &key)
 {
     qDebug() << Q_FUNC_INFO;
+    qDebug() << "Encryption file path: " << filePath;
     QFile file(filePath);
     if (!file.open(QIODevice::ReadOnly)) {
-        windows->handleError("Не вдалося відкрити БД для шифрування!", 1);
+        windows->handleError("Can't open database for encryption", 1);
     }
 
     QByteArray keyBytes = key.toUtf8().left(32).leftJustified(32, 0);
@@ -93,14 +94,14 @@ QByteArray Windows::encryptDatabase(const QString &filePath, const QByteArray &d
 
     EVP_CIPHER_CTX *ctx = EVP_CIPHER_CTX_new();
     if (!ctx) {
-        windows->handleError("Помилка ініціалізації OpenSSL!",1);
+        windows->handleError("OpenSSL initialization error",1);
     }
 
     if (EVP_EncryptInit_ex(ctx, EVP_aes_256_cbc(), nullptr,
                            reinterpret_cast<const unsigned char*>(keyBytes.data()),
                            reinterpret_cast<const unsigned char*>(iv.data())) != 1) {
         EVP_CIPHER_CTX_free(ctx);
-        windows->handleError("Помилка ініціалізації AES!", 1);
+        windows->handleError("AES initialization error", 1);
     }
 
     QByteArray buffer = file.readAll();
@@ -115,26 +116,26 @@ QByteArray Windows::encryptDatabase(const QString &filePath, const QByteArray &d
                           &len,
                           reinterpret_cast<const unsigned char*>(buffer.data()),
                           buffer.size()) != 1) {
-        qWarning() << "Помилка шифрування!";
+        qWarning() << "Encryption error";
         EVP_CIPHER_CTX_free(ctx);
-        windows->handleError("Помилка шифрування!", 1);
+        windows->handleError("Encryption error", 1);
     }
 
     int finalLen;
     if (EVP_EncryptFinal_ex(ctx,
                             reinterpret_cast<unsigned char*>(encrypted.data() + len),
                             &finalLen) != 1) {
-        qWarning() << "Помилка завершального шифрування!";
+        qWarning() << "Error in final encryption";
         EVP_CIPHER_CTX_free(ctx);
-        windows->handleError("Помилка завершального шифрування!", 1);
+        windows->handleError("Error in final encryption", 1);
     }
 
     encrypted.resize(len + finalLen);
     EVP_CIPHER_CTX_free(ctx);
 
     if (!file.open(QIODevice::WriteOnly)) {
-        qWarning() << "Не вдалося відкрити БД для запису!";
-        windows->handleError("Не вдалося відкрити БД для запису!",0);
+        qWarning() << "Can't open database for writing";
+        windows->handleError("Cand't open database for writing",0);
     }
 
     file.write(iv);       // Записуємо IV
@@ -143,13 +144,14 @@ QByteArray Windows::encryptDatabase(const QString &filePath, const QByteArray &d
     exit(EXIT_FAILURE);
 }
 
-bool Windows::decryptDatabase(const QString &filePath, const QString &key, QSqlDatabase &db) {
-    qDebug() << "Decrypting database...";
-
+bool Windows::decryptDatabase(const QString &key, QSqlDatabase &db) {
+    qDebug() << Q_FUNC_INFO;
+    QString filePath = windows->databasePath;
+    qDebug() << "Decryption file path: " << filePath;
     // Відкриваємо файл бази
     QFile file(filePath);
     if (!file.open(QIODevice::ReadOnly)) {
-        windows->handleError("Не вдалося відкрити БД для читання!", 1);
+        windows->handleError("Can't open database for reading", 1);
         return false;
     }
 
@@ -157,7 +159,7 @@ bool Windows::decryptDatabase(const QString &filePath, const QString &key, QSqlD
     file.close();
 
     if (encryptedData.size() < 16) {
-        windows->handleError("Файл занадто малий або пошкоджений!", 1);
+        windows->handleError("File is too small or damaged", 1);
         return false;
     }
 
@@ -167,7 +169,7 @@ bool Windows::decryptDatabase(const QString &filePath, const QString &key, QSqlD
 
     EVP_CIPHER_CTX *ctx = EVP_CIPHER_CTX_new();
     if (!ctx) {
-        windows->handleError("Помилка ініціалізації OpenSSL!", 1);
+        windows->handleError("OpenSSL initialization error", 1);
         return false;
     }
 
@@ -175,7 +177,7 @@ bool Windows::decryptDatabase(const QString &filePath, const QString &key, QSqlD
                            reinterpret_cast<const unsigned char*>(keyBytes.data()),
                            reinterpret_cast<const unsigned char*>(iv.data())) != 1) {
         EVP_CIPHER_CTX_free(ctx);
-        windows->handleError("Помилка ініціалізації AES!", 1);
+        windows->handleError("AES initialization error", 1);
         return false;
     }
 
@@ -188,7 +190,7 @@ bool Windows::decryptDatabase(const QString &filePath, const QString &key, QSqlD
                           reinterpret_cast<const unsigned char*>(cipherText.data()),
                           cipherText.size()) != 1) {
         EVP_CIPHER_CTX_free(ctx);
-        windows->handleError("Помилка розшифрування!", 1);
+        windows->handleError("Decryption error", 1);
         return false;
     }
 
@@ -197,7 +199,7 @@ bool Windows::decryptDatabase(const QString &filePath, const QString &key, QSqlD
                             reinterpret_cast<unsigned char*>(decryptedData.data() + len),
                             &finalLen) != 1) {
         EVP_CIPHER_CTX_free(ctx);
-        windows->handleError("Помилка завершального розшифрування!", 1);
+        windows->handleError("Final decryption error", 1);
         return false;
     }
 
@@ -214,7 +216,7 @@ bool Windows::decryptDatabase(const QString &filePath, const QString &key, QSqlD
     db.setDatabaseName(":memory:");
 
     if (!db.open()) {
-        windows->handleError("Не вдалося відкрити SQLite в пам'яті!", 1);
+        windows->handleError("Can't open SQLite in memory", 1);
         return false;
     }
 
