@@ -1,0 +1,25 @@
+# ninja log v6
+8	724	7615999629746431	PasswordManager_autogen/timestamp	bd4d0550a53ec514
+8	724	7615999629746431	PasswordManager_autogen/mocs_compilation.cpp	bd4d0550a53ec514
+8	724	7615999629746431	D:/Cpp/My projects/Qt/PasswordManager/PasswordManager/build/Desktop_Qt_6_9_0_MinGW_64_bit-Debug/PasswordManager_autogen/timestamp	bd4d0550a53ec514
+8	724	7615999629746431	D:/Cpp/My projects/Qt/PasswordManager/PasswordManager/build/Desktop_Qt_6_9_0_MinGW_64_bit-Debug/PasswordManager_autogen/mocs_compilation.cpp	bd4d0550a53ec514
+736	2761	7615999630363709	CMakeFiles/PasswordManager.dir/PasswordManager_autogen/mocs_compilation.cpp.obj	6971a5c9c7b021d9
+741	2793	7615999630410510	CMakeFiles/PasswordManager.dir/dbmanager.cpp.obj	3af6a55693c13705
+739	3032	7615999630385447	CMakeFiles/PasswordManager.dir/main.cpp.obj	a99dd0aed54b995d
+755	3060	7615999630552912	CMakeFiles/PasswordManager.dir/login.cpp.obj	f6c891b45ff135cf
+743	3125	7615999630410510	CMakeFiles/PasswordManager.dir/windows.cpp.obj	2b9b487e7f337057
+758	3152	7615999630570356	CMakeFiles/PasswordManager.dir/mainwindow.cpp.obj	6f6cf1812958720e
+750	3163	7615999630507876	CMakeFiles/PasswordManager.dir/addpassworddialog.cpp.obj	375d24a7680c5231
+748	3189	7615999630410510	CMakeFiles/PasswordManager.dir/welcomewindow.cpp.obj	40d4fa7f37425ebe
+753	3363	7615999630507876	CMakeFiles/PasswordManager.dir/register.cpp.obj	6cfc6a8b9ba8494b
+36	166	7616000122334981	PasswordManager_autogen/timestamp	bd4d0550a53ec514
+36	166	7616000122334981	PasswordManager_autogen/mocs_compilation.cpp	bd4d0550a53ec514
+36	166	7616000122334981	D:/Cpp/My projects/Qt/PasswordManager/PasswordManager/build/Desktop_Qt_6_9_0_MinGW_64_bit-Debug/PasswordManager_autogen/timestamp	bd4d0550a53ec514
+36	166	7616000122334981	D:/Cpp/My projects/Qt/PasswordManager/PasswordManager/build/Desktop_Qt_6_9_0_MinGW_64_bit-Debug/PasswordManager_autogen/mocs_compilation.cpp	bd4d0550a53ec514
+176	2304	7616000123720375	CMakeFiles/PasswordManager.dir/login.cpp.obj	f6c891b45ff135cf
+171	2334	7616000123686121	CMakeFiles/PasswordManager.dir/addpassworddialog.cpp.obj	375d24a7680c5231
+169	2394	7616000123662322	CMakeFiles/PasswordManager.dir/welcomewindow.cpp.obj	40d4fa7f37425ebe
+178	2441	7616000123756805	CMakeFiles/PasswordManager.dir/mainwindow.cpp.obj	6f6cf1812958720e
+167	2471	7616000123642296	CMakeFiles/PasswordManager.dir/homescreen.cpp.obj	bb89f28d322d8ef
+173	2559	7616000123707003	CMakeFiles/PasswordManager.dir/register.cpp.obj	6cfc6a8b9ba8494b
+2559	3065	7616000147464191	PasswordManager.exe	b9902c59aba8ce3b

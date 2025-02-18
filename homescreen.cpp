@@ -34,7 +34,7 @@ HomeScreen::~HomeScreen()
 void HomeScreen::refreshPage()
 {
     qDebug() << Q_FUNC_INFO;
-    if (windows->decryptDatabase("database.db", "my_secret_key", DBManager::db)) {
+    if (windows->decryptDatabase( "my_secret_key", DBManager::db)) {
         QSqlTableModel *model = new QSqlTableModel(nullptr, DBManager::db);
         model->setTable("my_table");
         model->select();
